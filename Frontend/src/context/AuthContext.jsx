@@ -5,9 +5,7 @@ const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };
 
@@ -27,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/me`);
       setUser(response.data.data);
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -38,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/auth/login', { email, password });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
     const { token, user } = response.data.data;
     localStorage.setItem('token', token);
     setToken(token);
@@ -48,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
-    const response = await axios.post('/api/auth/register', { name, email, password });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, { name, email, password });
     const { token, user } = response.data.data;
     localStorage.setItem('token', token);
     setToken(token);
@@ -64,15 +62,19 @@ export const AuthProvider = ({ children }) => {
     delete axios.defaults.headers.common['Authorization'];
   };
 
-  const value = {
-    user,
-    loading,
-    login,
-    register,
-    logout,
-    isAuthenticated: !!user,
-    isAdmin: user?.role === 'admin'
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!user,
+        isAdmin: user?.role === 'admin'
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
