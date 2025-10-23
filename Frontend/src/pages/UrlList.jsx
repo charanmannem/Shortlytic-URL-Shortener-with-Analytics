@@ -76,7 +76,7 @@ const UrlList = () => {
         </div>
 
         {urls.length === 0 ? (
-          <div className="bg-blue-100 rounded-lg shadow p-12 text-center">
+          <div className="bg-white rounded-lg shadow p-12 text-center">
             <p className="text-gray-900 text-lg">No URLs created yet.</p>
             <Link to="/create" className="text-blue-800 hover:text-blue-900 mt-4 inline-block font-medium">
               Create your first URL →
