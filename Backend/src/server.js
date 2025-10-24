@@ -8,6 +8,7 @@ const connectDB = require('./config/database');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
+
 // Import routes
 const authRoutes = require('./routes/auth');
 const urlRoutes = require('./routes/url');

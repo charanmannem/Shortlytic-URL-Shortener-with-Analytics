@@ -87,6 +87,7 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: `${process.env.FRONTEND_URL}/login?error=oauth_failed`, session: false }),
   googleCallback
+  
 );
 
 module.exports = router;

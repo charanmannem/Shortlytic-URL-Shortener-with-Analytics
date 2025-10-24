@@ -25,7 +25,7 @@ const OAuthCallback = () => {
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
           // Fetch user data
-          const response = await axios.get('/api/auth/me');
+          const response = await axios.get('auth/me');
           
           // Update auth context (you'll need to add setUser and setToken methods)
           localStorage.setItem('token', token);
