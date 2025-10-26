@@ -107,8 +107,7 @@ FRONTEND_URL=http://localhost:5173
 
 # Database
 MONGODB_URI=mongodb://localhost:27017/url-shortener
-# OR MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/url-shortener?retryWrites=true&w=majority
+
 
 # Authentication
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
